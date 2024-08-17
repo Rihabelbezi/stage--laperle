@@ -1,0 +1,77 @@
+@include('includes.header')
+@include('includes.headertwo')
+ <form action="residence-LS" method="post">
+
+        <div class="page-wrap properties-page">
+
+            <!-- BREADCRUMBS-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="breadcrumbs">
+                            <a href="{{ route('home') }}">Accueil</a>
+                        </div>
+                        <h2 class="page-title">Localtion sessoniare Résidence</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- BREADCRUMBS -->
+
+            <div class="container">
+                <div class="row">
+                            @foreach ($res as $re)
+                            <div class="col-md-4 col-sm-6">
+                                <div class="item">
+                                    <div class="item-header clearfix">
+                                        <h3><a href="#">{{ $re->titre }}</a></h3>
+                                    </div>
+                                    <figure>
+                                        <img src="{{ $re->validImage }}" alt="Post Image" class="img-responsive">
+                                        <span class="label rent">Localtion sessoniare</span>
+                                        <div class="overlay">
+                                            <a href="javascript:void(0);" data-id="{{ $re->id }}" data-toggle="modal" class="btn btn-detail detailbtn" data-target="#detailsModal">Detail</a>
+                                        </div>
+                                    </figure>
+                                    <div class="item-detail">
+                                        <div class="left">
+                                            <span class="place"><i class="fa fa-map-marker"></i>{{ $re->emplacement }}</span>
+                                            <span class="bed">{{ $re->bedrooms }}</span>
+                                            <span class="bath">{{ $re->bathrooms }}</span>
+                                        </div>
+                                        <div class="right">
+                                            <span class="area">{{ $re->surface }}</span>
+                                            @if ($re->prix)
+                                                <span class="price">{{ $re->prix }} TND</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
+
+            </div>
+
+
+            <!-- PAGINATION -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pagination">
+                            {{ $res->links('pagination::default') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PAGINATION -->
+
+            <!-- BLOG POSTS -->
+
+            <!-- FOOTER -->
+            @include('includes.footertwo')
+        @include('modal')
+
+        <!-- TOP -->
+
+
+@include('includes.footer')
